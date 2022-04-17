@@ -132,6 +132,91 @@
 
 <details>
 <summary>Ch5</summary>
+  
+  ## 서블릿   
+  |장점|단점|   
+  |:---:|:---:|   
+  |자바를 기반으로 하여 자바 API를 모두 사용할수 있음|HTML 응답을 위해서는 출력문으로 문자열 결합을 사용해야함|
+  |운영체제,하드웨어 영향을 받지않음|서블릿에서 HTML을 포함할 경우 화면 수정이 어려움|
+  |다양한 오픈소스 라이브러리와 개발도구를 활용할 수 있음|HTML폼 Form의 데이터 처리가 불편함|
+  ||기본적으로 단일 요청과 응답을 처리하는 구조로 다양한 경로의 URL 접근을 하나의 클래스에서 처리하기 어려움|   
+  ## 실제 자바 웹 개발에서의 서블릿 조합   
+  화면 구성을 위해 JSP와 같은 템플릿 엔진을 사용함   
+  REST AOI 구현을 위해서는 JAX-RS를 사용함   
+  복잡한 서비스 구현을 위해 프런트 컨트롤러 모델 등을 사용함   
+  ## HttpServletRequest   
+  HTTP 프로토콜의 request 정보를 서블릿에 전달하기 위한 목적으로 사용
+  서블릿 컨테이너에서 생성 클라이언트 요청이 doGet(), doPost()로 전달 될떄 인자로 함께 전달   
+  서블릿에서 클라이언트와 연결해 처리할 작업은 모두 HttpServletRequest를 통해야 함   
+  
+  ## 주요메서드
+  |메서드|설명|   
+  |:---:|:---:|   
+  |getParameter(name)|name 속성으로 전달된 파라미터 값|   
+  |getParameterValues(name)|동일한 name 속성으로 전달된 모든 파라미터값|   
+  |getMethod()|GET,POST등의 HTTP메서드|   
+  ## HttpServletResponse   
+  서버에서 클라이언트로 전달하려는 목적을 위한 기능으로 구성   
+  서블릿 컨테이너는 요청 클라이언트에 응답을 보내기 위한 HttpServletResponse 객체를 생성하여 서블릿에 전달   
+  서블릿은 해당 객체를 이용하여 content type, 응답코드, 응답 메시지 등을 전송   
+  |메서드|설명|   
+  |:---:|:---:|   
+  |sendRedirect(String location)|클라이언트에 리다이렉트 응답을 보낸후 특정 URL로 다시 요청하게 함|
+  |getWriter()|클라이언트로 데이터를 보내기 위한 출력 스트림을 리턴| 
+  ## web.xml에 서블릿 등록
+  ```
+  <servlet>
+      <servlet-name>HelloWorld</servlet-name>                     //서블릿 이름
+      <servlet-class>jwbook.servlet.HelloServlet</servlet-class> //서블릿 클래스 지정
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>HelloWorld</servlet-name>                     //서블릿 이름 메핑
+    <url-pattern>/hello</url-pattern>                           //서블릿 요청 주소 매핌
+  </servlet-mapping>
+  ```
+  ## 서블릿 자바 애너테이션 등록
+  ```
+  @WebServlet("/hello")
+  ```
+  ```
+  @WebServlet(description = "Hello World Servlet", urlPatterns ="/hello")
+  ```
+  ## 서블릿 초기화: init()
+  초기에 한번만 실행   
+  해당 서블릿이 컨테이너 메모리에 있는지 확인후 없을때 메모리에 적제하며 호출   
+  서블릿은 종료 Destroy되고 다시 시작되면 init() 메서드 호출   
+  ## 요청/응답: service() 메서드   
+  service() 메서드를 통해 각각 doGet()이나 doPost()로 분기됨   
+  이떄 파라미터로 HttpServletRequest와 HttpServletResponse 클래스 타입인 request와 response 객체가 제공됨   
+  ## 서블릿 종료: destroy()   
+  컨테이너로부터 서블릿 종료 요청이 있을 떄 destroy() 메서드를 호출함  
+  ## 페이지 이동   
+  데이터를 포함하지 않는 경우
+  ```
+  response.sendRedirect("main.jsp");
+  ```
+  데이터를 포함하는 경우   
+  request 속성으로 데이터를 넣은후 원하는 페이지로 포워딩   
+  JSP
+  ```
+  <%
+    request.setAttribute("member",m);
+    pageContext.forwared("userInfo.jsp");
+  %>
+  ```   
+  서블릿
+  ```
+  doGet(...){
+    ...
+    request.setAttribute("member",m);
+    RequestDispatcher dispatcher = request.getRequestDispatcher("userInfo.jsp");
+    dispatcher.forward(request,response);
+  }
+  ```
+  
+  
+  
 
 </details>
 
@@ -143,4 +228,7 @@
 <details>
 <summary>예문</summary>
 
+ ## 쿠키와 세션 차이
+ 쿠키는 서버에서 생성, 클라이언트에서 저장 사용   
+ 세션은 서버 쪽에 생성되는 공간으로 내부적으로는 세션 아이디를 통해 참조됨
 </details>
