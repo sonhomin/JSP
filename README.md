@@ -54,6 +54,7 @@
 
 <details>
 <summary>Ch2</summary>
+  
  ## 서블릿 컨테이너(Web Application Server, WAS)   
   이름과 같이 웹 애플리케이션을 구동하는 서버를 의미함   
   서버 컴퓨터가 WAS로 동작하려면 서블릿 컨테이너가 필요함   
