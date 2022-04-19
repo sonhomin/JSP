@@ -362,10 +362,10 @@
   ```
   ## tld
   ```
-  <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
+  <%@ taglib uri="/WEB-INF/tld/ItemTag.tld" prefix="mytag" %> 
   ```
   ## tag
   ```
-  
+  <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
   ```
 </details>
