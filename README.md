@@ -311,5 +311,61 @@
 
  ## 쿠키와 세션 차이
  쿠키는 서버에서 생성, 클라이언트에서 저장 사용   
- 세션은 서버 쪽에 생성되는 공간으로 내부적으로는 세션 아이디를 통해 참조됨
+ 세션은 서버 쪽에 생성되는 공간으로 내부적으로는 세션 아이디를 통해 참조됨   
+ ## 코드완성1
+ ```
+  <script>
+		function addItem(){
+			let todo = document.getElementById("item");
+			let list = document.getElementById("todolist");
+			let listitem = document.createElement("li");
+			listitem.className = "d-flex list-group-item list-group-item-action list-group-item-warnig";
+			let xbtn = document.createElement("button");
+			xbtn.className = "btn-close ms-auto";
+			
+			xbtn.onclick =function(e){
+				let pnode = e.target.parentNode;
+				list.removeChild(pnode);
+			}
+			
+			listitem.innerText = todo.value;
+			listitem.appendChild(xbtn);
+			list.appendChild(listitem);
+			todo.value = "";
+			todo.focus();
+		}
+	</script>
+  ```
+  ``` 
+  <button type="button" class="btn btn-primary" onclick="???">할일 추가</button>
+  ```
+  addItem()   
+  ## 코드완성2
+  ```
+  @WebServlet("/calc")
+  ```
+  ```
+  <form method="post" ???>
+  ```
+  action="/jwbook/calc"   
+   ## 서블릿 등록
+   ```   
+   <servlet>
+      <servlet-name>calculate</servlet-name>
+      <servlet-class>ch05.CalcServlet</servlet-class>
+   </servlet>
+
+   <servlet-mapping>
+      <servlet-name>calculate</servlet-name>
+      <url-pattern>/calc</url-pattern>
+   </servlet-mapping>
+  ```
+  ## tld
+  ```
+  <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
+  ```
+  ## tag
+  ```
+  
+  ```
 </details>
