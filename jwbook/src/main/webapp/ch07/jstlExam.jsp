@@ -17,7 +17,7 @@
 	<c:set var="intArray" value="${[1, 2, 3, 4, 5]}" />
 	<p>
 		product1(jstl):
-		<c:out value="${product1}" defalut="Not registered" escapeXml="true"/>
+		<c:out value="${product1}" default="Not registered" escapeXml="true"/>
 	</p>
 	<p>product1(el):${product1}</p>
 	<p>intArray[2]: ${intArray[2]}</p>
