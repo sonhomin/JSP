@@ -369,3 +369,141 @@
   <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
   ```
 </details>
+<details>
+<summary>Ch7</summary>   
+	
+## 액션태그     	
+jsp접두어   	
+|액션 태그|설명|  
+|:---:|:---:|
+|jsp:forward|request와 response객체를 포함해 다른 페이지로 포워드|
+|jsp:include|다른 페이지의 실행 결과를 포함시킴|
+|jsp:useBean|자바 빈즈 객체를 생성하거나 불러옴|
+|jsp:setProperty|자바 빈즈 객체의 속성(멤버변수)에 값을 할당함|
+|jsp:getProperty|자바 빈즈 객체의 속성값을 출력함|
+|jsp:param|include, forward 액션 사용시 파라미터 값을 수정하거나 추가함|
+
+## 자바 빈 클래스   
+* 인자가 없는 생성자(기본 생성자)로 수성된다   
+* 파일 혹은 네트워크를 통해 객체를 주고받을수 있는 직렬화 구조가 가능하다.
+* getter, setter 메서드를 통해 멤버 변수(속성)에 접근한다.   
+ EX.Member 클래스 자바 빈 구조   
+	
+```
+class Member{				//클래스 선언   
+	private int id;   
+	private int name;   
+	private int email;   
+	...   
+	public void setId(int id){	// setter 메서드 선언   
+		this.id = id;   
+	}   
+	public int getId(){		// getter 메서드 선언   
+		return id;   
+	}   
+	...   
+}   
+```
+## useBean 액션
+	<jsp:useBean od="instanceName" scope="page | request | session | application" 
+		class ="packageName.className" type="packageName.className"
+		beanName="packageName.className">
+	</jsp:useBean>
+1. useBean을 이용해 만든 객체의 범위를 지정하는 속성인 scope에 주어진 id의 객체가 있는지 확인한다.   
+2. 객체가 없다면 새로 객체를 생성하고 해당 scope에 저장한다   
+* id: 특정 scope에 저장하거나 가져올때 사용하는 이름   
+* scope: 해당 클래스 타입의 객체를 저장하거나 가져오는 범위로 내장객체의 일부   
+* class: 생성하거나 참조하려는 객체의 클래스명이며 반드시 패키지명까지 명시. 추상클래스, 인터페이스는 사용불가   
+* type: 특정 타입의 클래스를 명시할 때 사용. 추상 클래스나 인터페이스, 일반 클래스가 될수 있으며 class 속성의 클래스에서 상속 혹은 구현이 이루어져야 한다.   
+* beanName: type 과 beanName 사용을 통해 class 속성을 대체할 수 있다.   
+## useBean 활용   
+HTML 폼에서 입력한 값을 자바 객체로 연동할 때 useBean을 주로 활용   
+ex.회원가입시 아이디, 이름 등등 정보들을 입력하는경우 Member 객체에 넣고 이를 저장하기 위한 메서드 호출에 인자로 전달
+```
+<jsp:useBean id="m" class="com.my.Member" />
+<jsp:setProperty name="m" property="*" />
+<%
+   MemberDAO dao = new MemberDAO();
+   dao.insertDB(m);
+%>
+```   
+* page scope로 새로운 Member 클래스 인스턴스를 생성한 후 m이라는 이름으로 속성에 저장한다   
+* setProperty는 HTML <form> 태그의 name 속성값을 해당 객체의 setter 메서드를 이용해 저장한다   
+* property 속성에는 멤버 변수명 혹은 *을 사용해 전체 변수를 한번에 지정할수 있다
+## include, forward 액션   
+* include 액션: include된 파일을 각각 호출해 처리된 결과만 포함해 보여줌   
+```
+// main.jsp	
+<jsp:include page="header.jsp">
+ <jsp:param name="title" value="My Homepage" />
+</jsp:include>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// header.jsp
+<h2><%= request.getParameter("title") %> </h2>
+```
+* forward 액션: 서버 내부적으로 새로운 페이지로 이동하고 그 페이지의 내용을 클라이언트에게 응답으로 전달한다. 리디렉션과 기능적으로 유사 최초 request를 유지하거나 속성값을 저장한 경우 이를 유지하며 이동하기위해 사용.   
+```
+// main.jsp	
+<jsp:forward page="result.jsp">
+ <jsp:param name="title" value="My Homepage" />
+</jsp:forward>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// result.jsp
+<h2><%= request.getParameter("title") %> </h2>
+```
+## EL태그 	
+* scope object에 저장된 자바 빈 객체를 손쉽게 접근하고 사용할수 있게 해준다
+* 단순한 출력 외에도 사칙연산, 비교연산, 논리연산, 3항 연산등을 지원
+* null 객체를 참조할때 에러가 발생하지 않는다
+```
+${저장이름.변수명}
+```
+ex. 멤버 클래스 접근
+```
+<h2> 멤버정보</h2>
+이름: {m.name}
+```
+이미 sessuin에 'm'이라는 이름으로 저장된 Member 객체가 있으므로 해당 객체를 사용하여 접근   
+EL을 사용하지 않을 경우 표현식이나 액션으로 출력가능
+```
+이름: <%= m.name %> <br> // 표현식 사용
+~~~
+이름: <jsp:getProperty name="m" property="name" /> <br>
+```
+## JSTL
+자바 코드 블록을 사용하지않고 HTML 형식을 유지하면서 조건문, 반복문, 간단한 연산 등 기능을 손쉽게 사용할수 있도록 지원하기 위해 만들어진 표준 커스텀 태그 라이브러리
+```
+<c:forEach [var="참조 객체"] [varStatus="상태 정보 변수"] begin="시작" end="종료"
+[step="반복 단계 증가 값, 1이 기본"]>
+반복 출력되는 부분
+<c/:forEach>
+~~~
+//멤버예제
+<c:forEach var="m" items="${members}" varStatus="status" begin="0" end="5">
+index: ${status.index} /
+count: ${status.count} <BR>
+name: ${status.name} <BR>
+email: ${status.email} <BR>
+<HR>
+<c/:forEach>
+```   
+## Maven
+pom.xml 파일에 빌드 설정을 작성   
+```
+<dependencies>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+</dependencies>
+```
+</details>
+<details>
+<summary>Ch8</summary>
+	
+</details>
+<details>
+<summary>Ch9</summary>
+	
+</details>
