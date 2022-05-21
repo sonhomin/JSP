@@ -23,7 +23,7 @@ public class NewsDAO {
 	return conn;
 }
 
- public List<News> getALL() throws Exception{
+ public List<News> getAll() throws Exception{
 	Connection conn = open();
 	List<News> newsList = new ArrayList<>();
 	
