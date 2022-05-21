@@ -21,7 +21,7 @@ wtIaxVXM" crossorigin="anonymous"></script>
 	
 	<a href="news.nhn?action=getNews&aid=${news.aid}" class="text-decoration-none">[${status.count}] ${news.title}, ${news.date}</a>
 	
-	<a href="news.nhn?action=deleteNews&aid=${news.aid}"><span class='badgebg-secondary"> &times;</span></a>
+	<a href="news.nhn?action=deleteNews&aid=${news.aid}"><span class="badgebg-secondary"> &times;</span></a>
 	</li>
 	
 	</c:forEach>
@@ -37,8 +37,8 @@ wtIaxVXM" crossorigin="anonymous"></script>
 	<button class="btn btn-outline-info mb-3" type="button" data-bs-toggle="collapse" 
 	data-bs-target="#addForm" aria-expanded="false" aria-controls="addForm">뉴스등록
 	</button>
-	<div class="collapse" id=addForm"></div>
-	<div class.-card card-body"> 
+	<div class="collapse" id="addForm"></div>
+	<div class = "card card-body"> 
 	<form method="post" action="/jwbook/news.nhn?action=addNews" enctype="multipart/form-data"> 
 
 	<label class="form-label">제목</label> 
