@@ -79,7 +79,7 @@ public class NewsDAO {
   
   public void delNews(int aid) throws SQLException{
 	  Connection conn = open();
-	  String sql = "delete form news where aid=?";
+	  String sql = "delete from news where aid=?";
 	  PreparedStatement pstmt = conn.prepareStatement(sql);
 	  
 	  try(conn;pstmt){

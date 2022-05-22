@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 @WebServlet(urlPatterns = "/news.nhn")
-// 뉴스 이미지 파일 업로드 처리 MultipartConfig
 @MultipartConfig(maxFileSize = 1024 * 1024 * 2, location = "c:/Temp/img")
 public class NewsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,10 +25,8 @@ public class NewsController extends HttpServlet {
 	private NewsDAO dao;
 	private ServletContext ctx;
 
-	// 시작페이지 상수 설정
 	private final String START_PAGE = "ch10/newsList.jsp";
 
-	// DAO 사용을 위한 DAO선언과 서버 로그 메시지 생성을 위한 ctx
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		dao = new NewsDAO();
@@ -45,17 +42,12 @@ public class NewsController extends HttpServlet {
 		Method m;
 		String view = null;
 
-		// action 파라미터가 없는 경우 action 값을 listNews로 설정
 		if (action == null) {
 			action = "listNews";
 		}
 
-		// 자바의 리플렉션 API를 사용해 자동으로 action에 지정된 이름과 동일한 메서드를 호출하는 구조 사용 => if처리를 줄이고 구조
-		// 변경에 유리
 		try {
-			// 현재 클래스에서 action 이름과 HttpServletRequest를 파라미터로 하는 메서드 찾음
 			m = this.getClass().getMethod(action, HttpServletRequest.class);
-			// 메서드 실행 후 리턴값 받아옴
 			view = (String) m.invoke(this, request);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
@@ -66,8 +58,6 @@ public class NewsController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// 뷰 이동
-		// POST 요청에서는 리디렉션 방법으로 이동하도록 분기
 		if (view.startsWith("redirect:/")) {
 			String rview = view.substring("redirect:/".length());
 			response.sendRedirect(rview);
@@ -82,16 +72,13 @@ public class NewsController extends HttpServlet {
 		News n = new News();
 
 		try {
-			// 이미지 파일 저장
 			Part part = request.getPart("file");
 			String fileName = getFilename(part);
 			if (fileName != null && !fileName.isEmpty()) {
 				part.write(fileName);
 			}
-			// 입력값을 News 객체로 매핑
 			BeanUtils.populate(n, request.getParameterMap());
 
-			// 이미지 파일 이름을 News 객체에 저장
 			n.setImg("/img/" + fileName);
 
 			dao.addNews(n);
