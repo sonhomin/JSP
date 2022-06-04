@@ -23,8 +23,6 @@
 		// 응답헤더에 쿠키를 추가한다.
 		response.addCookie(c) ;
 	%>
-	<script type="javascript">
-		history.back()
-	</script>	
+	<script type="text/javascript">history.back();</script>
 </body>
 </html>

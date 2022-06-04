@@ -26,9 +26,7 @@
 	Cookie kc = new Cookie("memberNo", null) ;
 	kc.setMaxAge(0) ;
 	response.addCookie(kc) ;
-	%>
-	<script type="javascript">
-		history.back()
-	</script>
+	%>	
+	<script type="text/javascript">history.back();</script>
 </body>
 </html>
