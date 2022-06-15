@@ -29,7 +29,7 @@ public class MemberDAO {
 	Connection conn = open();
 	List<Member> memberList = new ArrayList<>();
 	
-	String sql = "select UserID, Passworld, NickName, admin from member";
+	String sql = "select UserID, Password, NickName, admin from member";
 	PreparedStatement pstmt = conn.prepareStatement(sql);
 	ResultSet rs = pstmt.executeQuery();
 	 
@@ -37,7 +37,7 @@ public class MemberDAO {
 		while(rs.next()) {
 			Member m = new Member();
 			m.setUserID(rs.getString("UserID"));
-			m.setPassworld(rs.getString("Passworld"));
+			m.setPassword(rs.getString("Password"));
 			m.setNickName(rs.getString("NickName"));
 			memberList.add(m);
 			}
@@ -49,7 +49,7 @@ public class MemberDAO {
   public Member getMember(String UserID) throws SQLException{
 	  Connection conn = open();
 	  Member m = new Member();
-	  String sql = "select UserID, Passworld, NickName, admin from Member where UserID=?";
+	  String sql = "select UserID, Password, NickName, admin from Member where UserID=?";
 	  PreparedStatement pstmt = conn.prepareStatement(sql);
 	  pstmt.setString(1,  UserID);
 	  ResultSet rs = pstmt.executeQuery();
@@ -57,25 +57,47 @@ public class MemberDAO {
 	  
 	  try(conn; pstmt; rs){
 		m.setUserID(rs.getString("UserID"));
-		m.setPassworld(rs.getString("Passworld"));
+		m.setPassword(rs.getString("Password"));
 		m.setNickName(rs.getString("NickName"));
 		pstmt.executeQuery();
 		return m;
 	  }
   }
  
-  public void addMember(Member m) throws Exception{
+  public int addMember(Member m) throws Exception{
+	  if(!ID_Check(m.getUserID())) return 0;
 	  Connection conn = open();
-	  String sql = "insert into Member(UserID, Passworld, NickName, admin) values(?,?,?,0)";
+	  String sql = "insert into Member(UserID, Password, NickName, admin) values(?,?,?,0)";
 	  PreparedStatement pstmt = conn.prepareStatement(sql);
 	  
 	  try(conn; pstmt){
 		  pstmt.setString(1, m.getUserID());
-		  pstmt.setString(2, m.getPassworld());
+		  pstmt.setString(2, m.getPassword());
 		  pstmt.setString(3, m.getNickName());
-		  pstmt.executeUpdate();
+		  
+		  return pstmt.executeUpdate();
+	  } catch (Exception e) {
+			e.printStackTrace();
+			return -1;
 	  }
   }
+  
+  public boolean ID_Check(String userID) {
+	  Connection conn = open();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Member WHERE UserID = ?");
+			pstmt.setString(1, userID);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
   
   public void delMember(String Userid) throws SQLException{
 	  Connection conn = open();
@@ -89,4 +111,21 @@ public class MemberDAO {
 		  }
 	  }
   }
+  
+  public int login(String userID, String userPassword) {
+	  Connection conn = open();	  
+	  try(conn;){
+			PreparedStatement pstmt = conn.prepareStatement("SELECT Password FROM Member WHERE userID = ?");
+			pstmt.setString(1, userID);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getString(1).equals(userPassword) ? 1 : 0;
+			} else {
+				return -2;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 }
