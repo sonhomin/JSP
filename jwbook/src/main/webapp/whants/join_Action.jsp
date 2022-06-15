@@ -50,8 +50,8 @@
             } else {
             	PrintWriter script = response.getWriter();
             	script.println("<script>");
-            	script.println("alert('회원가입을 축하드립니다.')");
-            	script.println("location.href = '../index.jsp'");
+            	script.println("alert('회원가입을 축하드립니다.')");      
+            	script.println("window.close();");     
             	script.println("</script>");
             }
         }
