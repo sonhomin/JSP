@@ -27,9 +27,8 @@
 <body>
 
     <div class="login_containers">
-        <h2>
-            로그인
-        </h2>
+    	<h1>Whants</h1>
+        <h2>로그인</h2>
         <form method="post" action="./login_Action.jsp">
             <h3>아이디</h3>
             <div class="loginID">
