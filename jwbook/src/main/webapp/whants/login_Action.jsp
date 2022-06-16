@@ -22,8 +22,14 @@
         MemberDAO memberDAO = new MemberDAO();
         int result = memberDAO.login(userID, userPassword);
         	
-        if(result == 1) {
-        	session.setAttribute("userID", userID);
+        if(result == 1 || result == 2) {
+        	Cookie c = new Cookie("admin", String.valueOf(result)) ;	//1 일반 2 관리자
+			// 쿠키에 설명을 추가한다
+			c.setComment("회원정보") ;			 
+			c.setMaxAge(60*60*24) ;		
+			// 응답헤더에 쿠키를 추가한다.
+			response.addCookie(c) ;
+			
         	PrintWriter script = response.getWriter();
         	script.println("<script>");
         	script.println("alert('로그인 성공')");

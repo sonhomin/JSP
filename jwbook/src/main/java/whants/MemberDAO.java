@@ -67,7 +67,7 @@ public class MemberDAO {
   public int addMember(Member m) throws Exception{
 	  if(!ID_Check(m.getUserID())) return 0;
 	  Connection conn = open();
-	  String sql = "insert into Member(UserID, Password, NickName, admin) values(?,?,?,0)";
+	  String sql = "insert into Member(UserID, Password, NickName, admin) values(?,?,?,1)";
 	  PreparedStatement pstmt = conn.prepareStatement(sql);
 	  
 	  try(conn; pstmt){
@@ -115,11 +115,11 @@ public class MemberDAO {
   public int login(String userID, String userPassword) {
 	  Connection conn = open();	  
 	  try(conn;){
-			PreparedStatement pstmt = conn.prepareStatement("SELECT Password FROM Member WHERE userID = ?");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT Password, Admin FROM Member WHERE userID = ?");
 			pstmt.setString(1, userID);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				return rs.getString(1).equals(userPassword) ? 1 : 0;
+				return rs.getString(1).equals(userPassword) ? rs.getInt("Admin") : 0;
 			} else {
 				return -2;
 			}
