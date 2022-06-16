@@ -75,18 +75,17 @@ public class ContentsDAO {
  
   	public void addContents(Contents c) throws Exception{
   		Connection conn = open();
-  		String sql = "insert into Contents (ContentID, Title, View, StartDate, EndDate, Director, Actor, img) values(?,?,?,?,?,?,?,?)";
+  		String sql = "insert into Contents (Title, View, StartDate, EndDate, Director, Actor, img) values(?,?,?,?,?,?,?)";
   		PreparedStatement pstmt = conn.prepareStatement(sql);
 	  
   		try(conn; pstmt){
-  			pstmt.setInt(1, c.getContentID());
-  			pstmt.setString(2, c.getTitle());
-  			pstmt.setInt(3, c.getView());
-  			pstmt.setString(4, c.getStartDate());
-  			pstmt.setString(5, c.getEndDate());
-  			pstmt.setString(6, c.getDirector());
-  			pstmt.setString(7, c.getActor());
-  			pstmt.setString(8, c.getImg());
+  			pstmt.setString(1, c.getTitle());
+  			pstmt.setInt(2, c.getView());
+  			pstmt.setString(3, c.getStartDate());
+  			pstmt.setString(4, c.getEndDate());
+  			pstmt.setString(5, c.getDirector());
+  			pstmt.setString(6, c.getActor());
+  			pstmt.setString(7, c.getImg());
   			pstmt.executeUpdate();
   		}
   	}
