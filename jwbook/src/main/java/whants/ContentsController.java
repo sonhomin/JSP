@@ -85,9 +85,14 @@ public class ContentsController extends HttpServlet {
 			request.setAttribute("error", "정상적으로 등록되지 않았습니다");
 			return "whants/login.jsp";
 		}
-		return "redirect:/whants.nhn?action=login";
+		return "redirect:/whants/index.jsp";
 	}
-
+	
+	public String login(HttpServletRequest request) {
+		
+		return "redirect:/whants/index.jsp";
+	}
+	
 //	public String deleteNews(HttpServletRequest request) {
 //		int aid = Integer.parseInt(request.getParameter("aid"));
 //		try {

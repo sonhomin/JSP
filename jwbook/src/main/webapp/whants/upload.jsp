@@ -3,9 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="EUC-KR">
 <title>업로드</title>
+<link rel="stylesheet" href="./css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -17,8 +20,37 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="card card-body">
-		<form method="post" action="/whants.nhn?action=addContents"	enctype="multipart/form-data">
+	<%
+
+	// 쿠키값 가져오기
+	Cookie[] cookies = request.getCookies() ;
+	int isAdmin = 0;
+	if(cookies != null){
+		
+		for(int i=0; i < cookies.length; i++){
+			Cookie c = cookies[i] ;
+			
+			// 저장된 쿠키 이름을 가져온다
+			String cName = c.getName();
+			
+			// 쿠키값을 가져온다
+			String cValue = c.getValue() ;
+			
+			if(cName.equalsIgnoreCase("admin")){
+				if(cValue.equals("1")){				//1 일반 2 관리자
+					%><jsp:forward page="index.jsp"/><%
+				}else{
+					isAdmin = 2;
+				}
+			}
+		}
+	}
+	if(isAdmin != 2)
+		%><jsp:forward page="index.jsp"/><%
+	%>
+	
+	
+		<form method="post" action="/jwbook/whants.nhn?action=addContents"	enctype="multipart/form-data">
 			<label class="form-label">제목</label>
 			<input type="text" name="title" class="form-control">
 			<label class="form-label">이미지</label>
@@ -36,6 +68,5 @@
 			
 			<button type="submit" class="btn btn-success mt-3">저장</button>
 		</form>
-	</div>
 </body>
 </html>
