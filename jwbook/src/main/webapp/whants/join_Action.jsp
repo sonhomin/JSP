@@ -11,7 +11,7 @@
         <meta charset="UTF-8">
         
         <title>
-            Jo's
+            whatns
         </title>
     </head>
     
