@@ -36,6 +36,7 @@
 			</div> </td>			
 		</tr>
 	</table>	
+	<hr>
 	</header>
 </body>
 </html>
