@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<link rel="stylesheet" href="./css/style.css">
+	<%@ include file="./header.jsp" %>
 	<button class="joinPage"  onclick="window.open('./upload.jsp')">»ý¼º</button> 
 </body>
 </html>

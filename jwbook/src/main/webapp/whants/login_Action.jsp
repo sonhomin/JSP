@@ -28,7 +28,7 @@
 			c.setMaxAge(60*60*24) ;	
 			response.addCookie(c) ;
 			
-			Cookie n = new Cookie("name", userID) ;
+			Cookie n = new Cookie("userID", userID) ;
 			n.setComment("회원ID") ;			 
 			n.setMaxAge(60*60*24) ;	
 			response.addCookie(n) ;
