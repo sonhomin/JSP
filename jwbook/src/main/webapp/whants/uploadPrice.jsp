@@ -54,9 +54,9 @@
 			<label class="form-label">컨텐츠ID</label>
 			<input type="text" name="ID" class="form-control">
 			<label class="form-label">플랫폼</label>
-			<input type="file" name="platform" class="form-control">
+			<input type="text" name="platform" class="form-control">
 			<label class="form-label">가격</label>
-			<input type="file" name="price" class="form-control">
+			<input type="text" name="price" class="form-control">
 			
 			<button type="submit" class="btn btn-success mt-3">저장</button>
 		</form>
