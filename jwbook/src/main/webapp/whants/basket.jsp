@@ -14,7 +14,7 @@
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>whants</title>
 <style type="text/css">
    		body { background: rgba(24, 24, 24, 1) !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 	</style>
