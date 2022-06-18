@@ -20,7 +20,13 @@ h1 {
     font-size: 75px;
     margin-bottom: -10px;
 }
-
+a {
+	color: rgba(255, 255, 255, 1);
+}
+.aHeader{
+	color: rgba(255, 255, 255, 1);
+	border-bottom: solid 1px rgba(255, 255, 255, 1);
+}
 .login_containers h2 {
     font-size: 50px;
     margin-bottom:  10px;
@@ -29,7 +35,9 @@ h1 {
 .login_containers h3 {
     font-size: 25px;
 }
-
+.headerTxt{
+	color: rgba(255, 255, 255, 1);
+}
 .loginID,
 .loginPassword {
     margin-top: 20px;

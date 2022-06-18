@@ -27,12 +27,12 @@
 	<header>
 	<table border="0" width=100%>
 		<tr>
-			<td> <div align="left" >Whants</div> </td> 
-			<td> <div align="right"> 
-				<% if(Admin.equals("2")){ %><a href="./upload.jsp" style="text-decoration:none;">컨텐츠 업로드</a> <a href="./uploadPrice.jsp" style="text-decoration:none;">가격 업로드</a> <%} %>
+			<td> <div class = "headerTxt" align="left" >Whants</div> </td> 
+			<td> <div class = "headerTxt" align="right"> 
+				<% if(Admin.equals("2")){ %><a class = "aHeader" href="./upload.jsp" style="text-decoration:none;">컨텐츠 업로드</a> <a class = "aHeader" href="./uploadPrice.jsp" style="text-decoration:none;">가격 업로드</a> <%} %>
 				
-				<a href="./logout.jsp" style="text-decoration:none;">로그아웃</a> &nbsp &nbsp
-				<a href="./basket.jsp" style="text-decoration:none;"> <%=ID%> </a> &nbsp &nbsp
+				<a class = "aHeader" href="./logout.jsp" style="text-decoration:none;">로그아웃</a> &nbsp &nbsp
+				<a class = "aHeader" href="./basket.jsp" style="text-decoration:none;"> <%=ID%> </a> &nbsp &nbsp
 			</div> </td>			
 		</tr>
 	</table>	
