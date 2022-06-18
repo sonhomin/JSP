@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
 <head>
-<title>¾÷·Îµå</title>
+<title>ì—…ë¡œë“œ</title>
 <link rel="stylesheet" href="./css/style.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
 <body>
 	<%
 
-	// ÄíÅ°°ª °¡Á®¿À±â
+	// ì¿ í‚¤ê°’ ê°€ì ¸ì˜¤ê¸°
 	Cookie[] cookies = request.getCookies() ;
 	int isAdmin = 0;
 	if(cookies != null){
@@ -30,14 +30,14 @@
 		for(int i=0; i < cookies.length; i++){
 			Cookie c = cookies[i] ;
 			
-			// ÀúÀåµÈ ÄíÅ° ÀÌ¸§À» °¡Á®¿Â´Ù
+			// ì €ìž¥ëœ ì¿ í‚¤ ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤
 			String cName = c.getName();
 			
-			// ÄíÅ°°ªÀ» °¡Á®¿Â´Ù
+			// ì¿ í‚¤ê°’ì„ ê°€ì ¸ì˜¨ë‹¤
 			String cValue = c.getValue() ;
 			
 			if(cName.equalsIgnoreCase("admin")){
-				if(cValue.equals("1")){				//1 ÀÏ¹Ý 2 °ü¸®ÀÚ
+				if(cValue.equals("1")){				//1 ì¼ë°˜ 2 ê´€ë¦¬ìž
 					%><jsp:forward page="index.jsp"/><%
 				}else{
 					isAdmin = 2;
@@ -51,22 +51,22 @@
 	
 	
 		<form method="post" action="/jwbook/whants.nhn?action=addContents"	enctype="multipart/form-data">
-			<label class="form-label">Á¦¸ñ</label>
+			<label class="form-label">ì œëª©</label>
 			<input type="text" name="title" class="form-control">
-			<label class="form-label">ÀÌ¹ÌÁö</label>
+			<label class="form-label">ì´ë¯¸ì§€</label>
 			<input type="file" name="file" class="form-control"></br>
-			<label class="form-label">»ó¼¼ ³»¿ë</label></br>
+			<label class="form-label">ìƒì„¸ ë‚´ìš©</label></br>
 			<textarea rows="5" cols="50" name="content" class="form-control"></textarea></br>
-			<label class="form-label">½ÃÀÛÀÏ</label>
+			<label class="form-label">ì‹œìž‘ì¼</label>
 			<input type="date" name="startDate" class="form-control">
-			<label class="form-label">Á¾·áÀÏ</label>
+			<label class="form-label">ì¢…ë£Œì¼</label>
 			<input type="date" name="endDate" class="form-control">
-			<label class="form-label">°¨µ¶</label>
+			<label class="form-label">ê°ë…</label>
 			<input type="text" name="director" class="form-control">
-			<label class="form-label">¹è¿ì</label>
+			<label class="form-label">ë°°ìš°</label>
 			<input type="text" name="actor" class="form-control">
 			
-			<button type="submit" class="btn btn-success mt-3">ÀúÀå</button>
+			<button type="submit" class="btn btn-success mt-3">ì €ìž¥</button>
 		</form>
 </body>
 </html>

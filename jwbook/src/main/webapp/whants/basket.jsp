@@ -47,6 +47,7 @@
             	</div>
         	</div>
 		</c:forEach>
-		<button class="joinPage"  onclick="./index.jsp">메인메뉴</button>
+		
+		<button onclick="location.href='./index.jsp'">메인메뉴</button>
 </body>
 </html>

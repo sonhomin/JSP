@@ -31,8 +31,8 @@
 			<td> <div align="right"> 
 				<% if(Admin.equals("2")){ %><a href="./upload.jsp" style="text-decoration:none;">컨텐츠 업로드</a> <a href="./uploadPrice.jsp" style="text-decoration:none;">가격 업로드</a> <%} %>
 				
-				<a href="./logout.jsp" style="text-decoration:none;">로그아웃</a> 
-				<a href="./basket.jsp" style="text-decoration:none;"> <%=ID%> </a> 
+				<a href="./logout.jsp" style="text-decoration:none;">로그아웃</a> &nbsp &nbsp
+				<a href="./basket.jsp" style="text-decoration:none;"> <%=ID%> </a> &nbsp &nbsp
 			</div> </td>			
 		</tr>
 	</table>	

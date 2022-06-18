@@ -94,7 +94,7 @@ public class ContentsDAO {
   		Connection conn = open();
   		List<Contents> contentList = new ArrayList<>();
   		
-  		String sql = "SELECT  Contents.Title, Contents.img, Price.platform FROM Contents Join Price on  Price.ContentID  = Contents.ContentID = CAST(SELECT CART.ContentID FROM CART WHERE UserID = ? AS varchar);";
+  		String sql = "SELECT  Title, img FROM Contents WHERE ContentID IN (SELECT ContentID FROM CART WHERE UserID = ? )";
   		 
   		PreparedStatement pstmt = conn.prepareStatement(sql);
   		pstmt.setString(1, ID);
@@ -120,6 +120,17 @@ public class ContentsDAO {
   			pstmt.setInt(1, p.getContentID());
   			pstmt.setString(2, p.getPlatform());
   			pstmt.setString(3, p.getPrice());
+  			pstmt.executeUpdate();
+  		}
+  	}
+  	public void addCart(String CID, String UID) throws Exception{
+  		Connection conn = open();
+  		String sql = "insert into CART (USERID, CONTENTID) values(?,?)";
+  		PreparedStatement pstmt = conn.prepareStatement(sql);
+	  
+  		try(conn; pstmt){
+  			pstmt.setString(1, UID);
+  			pstmt.setString(2, CID);
   			pstmt.executeUpdate();
   		}
   	}
