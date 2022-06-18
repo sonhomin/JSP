@@ -49,7 +49,10 @@
     	<div class ="row">
         <c:forEach var="Contents" items="${contentList}" varStatus="status">
 			<div class="col-lg-3"> <div class="card">
-                <img class="card-img-top"  src="${Contents.img}" alt="Card image cap">
+				
+				<input type="hidden" name="Contents" value="${Contents}">
+                <a type="submit" target=_blank> <img class="card-img-top"  src="${Contents.img}" alt="Card image cap"> </a>
+                
                 <div class="card-body">                	
                 	<form action="./addCart.jsp">
                 	<input type="hidden" name="UID" value="${Contents.getContentID()}">
