@@ -15,6 +15,10 @@
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
         <title>whants</title>
+    <style type="text/css">
+   		body { background: rgba(24, 24, 24, 1) !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+	</style>
+
     </head>
 
     <body>
@@ -42,9 +46,9 @@
 			
 		}*/
 	%>
-    	<div id="cards-box" class="card-columns">
+    	<div class ="row">
         <c:forEach var="Contents" items="${contentList}" varStatus="status">
-			<div class="card">
+			<div class="col-lg-3"> <div class="card">
                 <img class="card-img-top"  src="${Contents.img}" alt="Card image cap">
                 <div class="card-body">
                 	<a target="_blank" class="card-title"> ${Contents.getTitle()} </a>
@@ -54,7 +58,7 @@
                 		<button type="submit">ADD CART</button>
                 	</form>
             	</div>
-        	</div>
+        	</div></div>
 		</c:forEach>
 		</div>
 		

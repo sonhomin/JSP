@@ -13,7 +13,9 @@
     margin: 100px auto;
     text-align: center;
 }
-
+div {
+	 color: rgba(24, 24, 24, 1);
+}
 h1 {
     font-size: 75px;
     margin-bottom: -10px;
