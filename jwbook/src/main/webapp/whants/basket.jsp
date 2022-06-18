@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -21,11 +21,11 @@
 		ContentsDAO dao = new ContentsDAO();
 		List<Contents> contentList = dao.getBasket(ID);
 		request.setAttribute("contentList", contentList);
+		/*
 		Iterator<Contents> iter = contentList.iterator();
 		
 		while(iter.hasNext()){
-			Contents c = iter.next();
-			/*
+			Contents c = iter.next();			
 			String Link = c.getImg();
 			
 			PrintWriter script = response.getWriter();
@@ -35,8 +35,8 @@
 			script.println(" <a target=\"_blank\" href=\"#\" class=\"card-title\">"+c.getTitle()+"</a> \" ");
 			script.println(" </div>");
 			script.println(" </div>");
-			*/
-		}
+			
+		}*/
 	%>
     	
         <c:forEach var="Contents" items="${contentList}" varStatus="status">
@@ -47,5 +47,6 @@
             	</div>
         	</div>
 		</c:forEach>
+		<button class="joinPage"  onclick="./index.jsp">메인메뉴</button>
 </body>
 </html>

@@ -29,7 +29,7 @@ public class ContentsDAO {
 		Connection conn = open();
 		List<Contents> contentList = new ArrayList<>();
 	
-		String sql = "select ContentID, Title, View, PARSEDATETIME(StartDate,'yyyy-MM-dd hh:mm:ss') as sdate, PARSEDATETIME(EndDate,'yyyy-MM-dd hh:mm:ss') as edate, Director, Actor, img from Contents";
+		String sql = "select ContentID, Title, View, PARSEDATETIME(StartDate,'yyyy-MM-dd') as sdate, PARSEDATETIME(EndDate,'yyyy-MM-dd') as edate, Director, Actor, img from Contents";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 	 
@@ -89,6 +89,7 @@ public class ContentsDAO {
   			pstmt.executeUpdate();
   		}
   	}
+  	
   	public List<Contents> getBasket(String ID) throws Exception {
   		Connection conn = open();
   		List<Contents> contentList = new ArrayList<>();
@@ -107,6 +108,19 @@ public class ContentsDAO {
   				contentList.add(c);
   			}
   			return contentList;
+  		}
+  	}
+  	
+  	public void addPrice(Price p) throws Exception{
+  		Connection conn = open();
+  		String sql = "insert into PRICE (CONTENTID, PLATFORM, PRICE) values(?,?,?)";
+  		PreparedStatement pstmt = conn.prepareStatement(sql);
+	  
+  		try(conn; pstmt){
+  			pstmt.setInt(1, p.getContentID());
+  			pstmt.setString(2, p.getPlatform());
+  			pstmt.setString(3, p.getPrice());
+  			pstmt.executeUpdate();
   		}
   	}
   	

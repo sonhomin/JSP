@@ -29,7 +29,7 @@
 		<tr>
 			<td> <div align="left" >Whants</div> </td> 
 			<td> <div align="right"> 
-				<% if(Admin.equals("2")){ %><a href="./upload.jsp" style="text-decoration:none;">업로드</a><%} %>
+				<% if(Admin.equals("2")){ %><a href="./upload.jsp" style="text-decoration:none;">컨텐츠 업로드</a> <a href="./uploadPrice.jsp" style="text-decoration:none;">가격 업로드</a> <%} %>
 				
 				<a href="./logout.jsp" style="text-decoration:none;">로그아웃</a> 
 				<a href="./basket.jsp" style="text-decoration:none;"> <%=ID%> </a> 
