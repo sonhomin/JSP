@@ -89,7 +89,27 @@ public class ContentsDAO {
   			pstmt.executeUpdate();
   		}
   	}
-  
+  	public List<Contents> getBasket(String ID) throws Exception {
+  		Connection conn = open();
+  		List<Contents> contentList = new ArrayList<>();
+  		
+  		String sql = "SELECT  Contents.Title, Contents.img, Price.platform FROM Contents Join Price on  Price.ContentID  = Contents.ContentID = CAST(SELECT CART.ContentID FROM CART WHERE UserID = ? AS varchar);";
+  		 
+  		PreparedStatement pstmt = conn.prepareStatement(sql);
+  		pstmt.setString(1, ID);
+  		ResultSet rs = pstmt.executeQuery();
+	  
+  		try(conn; pstmt; rs){
+  			while(rs.next()) {
+  				Contents c = new Contents();
+  				c.setTitle(rs.getString("title"));
+  				c.setImg(rs.getString("img"));
+  				contentList.add(c);
+  			}
+  			return contentList;
+  		}
+  	}
+  	
   	public void delContents(String ContentID) throws SQLException{
   		Connection conn = open();
   		String sql = "delete from Contents where ContentID=?";

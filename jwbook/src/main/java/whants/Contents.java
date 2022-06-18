@@ -15,49 +15,49 @@ public class Contents {
 		return ContentID;
 	}
 	public void setContentID(int contentID) {
-		ContentID = contentID;
+		this.ContentID = contentID;
 	}
 	public String getTitle() {
 		return Title;
 	}
 	public void setTitle(String title) {
-		Title = title;
+		this.Title = title;
 	}
 	public int getView() {
 		return View;
 	}
 	public void setView(int view) {
-		View = view;
+		this.View = view;
 	}
 	public String getInfo() {
 		return Info;
 	}
 	public void setInfo(String info) {
-		Info = info;
+		this.Info = info;
 	}
 	public String getStartDate() {
 		return StartDate;
 	}
 	public void setStartDate(String startDate) {
-		StartDate = startDate;
+		this.StartDate = startDate;
 	}
 	public String getEndDate() {
 		return EndDate;
 	}
 	public void setEndDate(String endDate) {
-		EndDate = endDate;
+		this.EndDate = endDate;
 	}
 	public String getDirector() {
 		return Director;
 	}
 	public void setDirector(String director) {
-		Director = director;
+		this.Director = director;
 	}
 	public String getActor() {
 		return Actor;
 	}
 	public void setActor(String actor) {
-		Actor = actor;
+		this.Actor = actor;
 	}
 	public String getImg() {
 		return img;

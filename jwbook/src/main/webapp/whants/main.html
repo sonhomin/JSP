@@ -1,0 +1,166 @@
+<!Doctype html>
+<html lang="ko">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+
+
+        <title>영화 장바구니</title>
+
+        <!-- style -->
+        <style type="text/css">
+            * {
+                font-family: "Stylish", sans-serif;
+            }
+
+            .wrap {
+                width: 900px;
+                margin: auto;
+            }
+
+            .comment {
+                color: rgba(0, 0, 255, 0.233);
+                font-weight: bold;
+            }
+
+            #post-box {
+                width: 500px;
+                margin: 20px auto;
+                padding: 50px;
+                border: black solid;
+                border-radius: 5px;
+            }
+
+            body {
+              background-color: black;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                showArticles();
+            });
+
+            function postArticle() {
+                $.ajax({
+                    type: "POST",
+                    url: "/memo",
+                    data: {sample_give:'샘플데이터'},
+                    success: function (response) { // 성공하면
+                        alert(response["msg"]);
+                    }
+                })
+            }
+
+            function showArticles() {
+                $.ajax({
+                    type: "GET",
+                    url: "/memo?sample_give=샘플데이터",
+                    data: {},
+                    success: function (response) {
+                        alert(response["msg"]);
+                    }
+                })
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <div class="wrap">
+            <div class="jumbotron">
+                <h1 class="display-4">메인 페이지
+                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">장바구니
+                    </button>
+                </h1>
+                <p class="lead">작품소개</p>
+                <hr class="my-4">
+                <p class="lead">
+                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">넷플릭스
+                    </button>
+                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">디즈니+
+                    </button>
+                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">티빙
+                    </button>
+                </p>
+            </p>
+            </div>
+            <div id="post-box" class="form-post" style="display:none">
+                <div>
+                    <div class="form-group">
+                        <label for="post-url">URL</label>
+                        <input id="post-url" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="post-comment">영화 코멘트</label>
+                        <textarea id="post-comment" class="form-control" rows="2"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="postArticle()">영화 메모</button>
+                </div>
+            </div>
+            <div id="cards-box" class="card-columns">
+                <div class="card">
+                    <img class="card-img-top"
+                         src="https://movie-phinf.pstatic.net/20220516_144/1652665409592Chvey_JPEG/movie_image.jpg?type=m886_590_2"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="#" class="card-title">영화 제목</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top"
+                         src="https://movie-phinf.pstatic.net/20220509_176/1652081912471yhg3N_JPEG/movie_image.jpg?type=m886_590_2"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="#" class="card-title">영화 제목</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top"
+                         src="https://movie-phinf.pstatic.net/20220504_33/165164173504831gKe_JPEG/movie_image.jpg?type=m886_590_2"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="#" class="card-title">영화 제목</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top"
+                         src="https://w.namu.la/s/7777eaeea03aaee3ea04f7a0fef038a57da5240f4bd7eb8732c48a0290cd1d3b3544858d5c0405c0947038bc685897bf462a72e44da0df2d5f4b1b6b57803d376d7d3075add8d8a218997eb1659d5dff3fec83063511c00e53f689e23d66dc7861debbd86117e0231b32e16974362599"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="#" class="card-title">영화 제목</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top"
+                         src="https://movie-phinf.pstatic.net/20220516_144/1652687286550mcE4G_JPEG/movie_image.jpg?type=m886_590_2"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="#" class="card-title">영화 제목</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top"
+                         src="https://movie-phinf.pstatic.net/20220616_274/1655363103107UB9nG_JPEG/movie_image.jpg?type=m886_590_2"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="#" class="card-title">영화 제목</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

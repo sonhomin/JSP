@@ -1,0 +1,91 @@
+
+
+  <!Doctype html>
+<html lang="ko">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+            
+        <title>영화 장바구니</title>
+
+        <!-- style -->
+        <style type="text/css">
+            * {
+                font-family: "Stylish", sans-serif;
+            }
+
+            .wrap {
+                width: 900px;
+                margin: auto;
+            }
+
+            .comment {
+                color: rgba(0, 0, 255, 0.233);
+                font-weight: bold;
+            }
+
+            #post-box {
+                width: 500px;
+                margin: 20px auto;
+                padding: 50px;
+                border: rgb(138, 138, 138) solid;
+                border-radius: 5px;
+            }
+
+            body {
+              background-color: black;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                showArticles();
+            });
+
+        </script>
+
+    </head>
+
+    <body>
+        <div class="wrap">
+            <div class="jumbotron">
+                <h1 class="display-4">작품 정보
+                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">장바구니
+                </button></h1>
+                <p class="lead">원하는 작품일 경우 장바구니에 추가가 가능합니다.</p>
+                <hr class="my-4">
+                <p class="lead">
+                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">장바구니에 추가
+                    </button>
+                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">메인페이지로 이동
+                    </button>
+                </p>
+            </p>
+            </div>
+            <div className="detail_info">
+                <img class="card-img-top"
+                         src="https://movie-phinf.pstatic.net/20220516_144/1652665409592Chvey_JPEG/movie_image.jpg?type=m886_590_2"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <a target="_blank" href="#" class="card-title">영화 제목</a>
+                        <p class="card-text">작품 지원 플렛폼1</p>
+                        <p class="card-text">작품 지원 플렛폼2</p>
+                        <p class="card-text">작품 지원 플렛폼3</p>
+                    </div>
+            </div>
+        </div>
+    </body>
+
+</html>
